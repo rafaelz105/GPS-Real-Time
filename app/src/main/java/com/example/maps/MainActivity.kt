@@ -10,21 +10,17 @@ import com.google.android.gms.maps.SupportMapFragment
 class MainActivity : AppCompatActivity() , OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
-
-
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        createMapFragment()
     }
-
-
-    private fun createFragment(){
-        val mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+    private fun createMapFragment() {
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.fragmentMap) as SupportMapFragment
         mapFragment.getMapAsync(this)
-    }
-
-
-    override fun onMapReady(googleMap : GoogleMap) {
-        map = googleMap
     }
 }
